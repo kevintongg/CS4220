@@ -1,26 +1,30 @@
 function upperCase(s) {
-  let ret = '';
+  let str = '';
   for (let i = 0; i < s.length; i++) {
-    if (/[.^a-zA-Z]/) {
-      ret += String.fromCharCode(s.charCodeAt(i) & 223);
+    if (s.charCodeAt(i) !== 32 || s.charCodeAt(i) === 46) {
+      if (s.charCodeAt(i) === s.length) {
+        break;
+      }
+      str += String.fromCharCode(s.charCodeAt(i) & 223);
     }
   }
-  return ret;
+  return str;
 }
 
 function lowerCase(s) {
-  let ret = '';
+  let str = '';
   for (let i = 0; i < s.length; i++) {
-    ret += String.fromCharCode(s.charCodeAt(i) + 32)
+    str += String.fromCharCode(s.charCodeAt(i) & 255);
   }
+  return str;
 }
 
 function runStringFunctions() {
   let str = 'I watched the storm, so beautiful yet terrific. The face of the moon was in shadow.';
-
-  let unconditionallyCapitalized = ['I', 'Moon', 'Shadow'];
-  let lowercaseWords = ['the', 'of', 'in', 'an'];
-
+  
+  let unconditionallyCapitalized = [ 'I', 'Moon', 'Shadow' ];
+  let lowercaseWords = [ 'the', 'of', 'in', 'an' ];
+  
   console.log('upperCase: ', upperCase(str));
   console.log('lowerCase: ', lowerCase(str));
   // console.log('sentenceCase: ', sentenceCase(str, unconditionallyCapitalized));
