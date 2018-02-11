@@ -14,7 +14,7 @@ function upperCase(s) {
 function lowerCase(s) {
   let str = '';
   for (let i = 0; i < s.length; i++) {
-    str += String.fromCharCode(s.charCodeAt(i) & 255);
+    str += String.fromCharCode(s.charCodeAt(i) +32);
   }
   return str;
 }
