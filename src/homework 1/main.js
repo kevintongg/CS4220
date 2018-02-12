@@ -1,3 +1,10 @@
+/**
+ *
+ * This function takes a single string and returns a copy of the string
+ * with all alphabets converted to uppercase characters.
+ *
+ * */
+
 function upperCase(s) {
   let temp = '';
   for (let i = 0; i < s.length; i++) {
@@ -9,6 +16,13 @@ function upperCase(s) {
   }
   return temp;
 }
+
+/**
+ *
+ * This function takes a single string and returns a copy of the string
+ * with all alphabets converted to lowercase characters.
+ *
+ * */
 
 function lowerCase(s) {
   let temp = '';
@@ -22,18 +36,113 @@ function lowerCase(s) {
   return temp;
 }
 
-function sentenceCase(s) {
 
+/**
+ *
+ * This function takes two arguments: a single string (str) and an array of
+ * strings (unconditionallyCapitalized[]). This function returns a copy of str
+ * with the first letter of the first word capitalized, and all other words
+ * lowercase, except for words that are unconditionally capitalized, such as
+ * proper nouns and "I". The unconditionallyCapitalized array contains all words
+ * that should be unconditionally capitalized.
+ *
+ * */
+
+function sentenceCase(s, array) {
+  let temp = s.toLowerCase().split(' ');
+  for (let i = 0; i < temp.length; i++) {
+    temp[i] = temp[i].charAt(0).toUpperCase() + temp[i].substr(1);
+  }
+  temp = temp.join(' ');
+  let split = temp.split(' ');
+  console.log(split);
+  for (let j = 0; j < split.length; j++) {
+    for (let k = 0; k < array.length; k++) {
+      if (split[j] !== array[k]) {
+        split[j] = split[j].toLowerCase();
+      }
+    }
+  }
+  return split.join(' ');
+}
+
+/**
+ *
+ * This function takes a single string and returns a copy of the string with
+ * the first character of each word converted to uppercase.
+ *
+ * */
+
+function capitalizedCase(s) {
+  let split = s.toLowerCase().split(' ');
+  for (let i = 0; i < split.length; i++) {
+    split[i] = split[i].charAt(0).toUpperCase() + split[i].substr(1);
+  }
+  return split.join(' ');
+}
+
+/**
+ *
+ * This function takes a single string and returns a copy of the string
+ * comprised of characters that alternate between lower and uppercase.
+ *
+ * */
+
+function alternatingCase(s) {
+  let split = s.toLowerCase().split('');
+  for (let i = 1; i < split.length; i += 2) {
+    split[i] = split[i].toUpperCase();
+  }
+  return split.join('');
+}
+
+/**
+ *
+ * This function takes two arguments: a single string (str) and an array of
+ * strings (lowercaseWords[]). It returns a copy of str with the initial letter
+ * of each word capitalized. After the first word in the string, however, articles,
+ * conjunctions, and prepositions not more than five letters long should all be
+ * lower case. The lowercaseWords array contains all words that should be lowercase.
+ *
+ * */
+
+function titleCase(s, array) {
+  let split = s.toLowerCase().split(' ');
+  for (let i = 0; i < split.length; i++) {
+    for (let j = 0; j < array.length; j++) {
+      if (split[i] === array[j]) {
+        i++;
+      } else {
+        split[i] = split[i].charAt(0).toUpperCase() + split[i].substr(1);
+      }
+    }
+  }
+  return split.join(' ');
+}
+
+/**
+ *
+ * This function takes a single string and returns a copy of the string with the
+ * first letter of each word lowercase, and all other letters in the word uppercase.
+ *
+ * */
+
+function inverseCase(s) {
+  let split = s.toLowerCase().split(' ');
+  for (let i = 0; i < split.length; i++) {
+    split[i] = split[i].charAt(0).toLowerCase() + split[i].substr(1).toUpperCase();
+  }
+  return split.join(' ');
 }
 
 function runStringFunctions() {
   let str = 'I watched the storm, so beautiful yet terrific. The face of the moon was in shadow.';
-
+  
   let unconditionallyCapitalized = ['I', 'Moon', 'Shadow'];
   let lowercaseWords = ['the', 'of', 'in', 'an'];
-
-  console.log('upperCase: ', upperCase(str));
-  console.log('lowerCase: ', lowerCase(str));
+  
+  // console.log('upperCase: ', upperCase(str));
+  // console.log('lowerCase: ', lowerCase(str));
   console.log('sentenceCase: ', sentenceCase(str, unconditionallyCapitalized));
   // console.log('capitalizedCase: ', capitalizedCase(str));
   // console.log('alternatingCase: ', alternatingCase(str));
@@ -42,3 +151,21 @@ function runStringFunctions() {
 }
 
 runStringFunctions();
+
+function getCharacterFrequency(s) {
+
+}
+
+function printCharacterFrequency(s) {
+
+}
+
+function runCharacterFunctions() {
+  
+  let str = 'Hello, World!';
+  
+  let frequencyObj = getCharacterFrequency(str);
+  
+  printCharacterFrequency(frequencyObj);
+  
+}
