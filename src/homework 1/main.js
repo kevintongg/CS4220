@@ -49,21 +49,23 @@ function lowerCase(s) {
  * */
 
 function sentenceCase(s, array) {
-  let temp = s.toLowerCase().split(' ');
+  const helper = function (str) {
+    str = str.toLowerCase();
+    const regex = /(^|\. *)([a-z])/g;
+    return str.replace(regex, e => {
+      return e.toUpperCase()
+    })
+  };
+  let temp = helper(s).split(' ');
   for (let i = 0; i < temp.length; i++) {
-    temp[i] = temp[i].charAt(0).toUpperCase() + temp[i].substr(1);
-  }
-  temp = temp.join(' ');
-  let split = temp.split(' ');
-  console.log(split);
-  for (let j = 0; j < split.length; j++) {
-    for (let k = 0; k < array.length; k++) {
-      if (split[j] !== array[k]) {
-        split[j] = split[j].toLowerCase();
+    for (let j = 1; j < array.length; j++) {
+      array[j] = array[j].toLowerCase();
+      if (temp[i] === array[0] || temp[i].includes(array[j])) {
+        temp[i] = temp[i].charAt(0).toUpperCase() + temp[i].substr(1);
       }
     }
   }
-  return split.join(' ');
+  return temp.join(' ');
 }
 
 /**
@@ -137,35 +139,49 @@ function inverseCase(s) {
 
 function runStringFunctions() {
   let str = 'I watched the storm, so beautiful yet terrific. The face of the moon was in shadow.';
-  
+
   let unconditionallyCapitalized = ['I', 'Moon', 'Shadow'];
   let lowercaseWords = ['the', 'of', 'in', 'an'];
-  
-  // console.log('upperCase: ', upperCase(str));
-  // console.log('lowerCase: ', lowerCase(str));
-  console.log('sentenceCase: ', sentenceCase(str, unconditionallyCapitalized));
-  // console.log('capitalizedCase: ', capitalizedCase(str));
-  // console.log('alternatingCase: ', alternatingCase(str));
-  // console.log('titleCase: ', titleCase(str, lowercaseWords));
-  // console.log('inverseCase: ', inverseCase(str));
-}
 
-runStringFunctions();
+  console.log('upperCase: ', upperCase(str));
+  console.log('lowerCase: ', lowerCase(str));
+  console.log('sentenceCase: ', sentenceCase(str, unconditionallyCapitalized));
+  console.log('capitalizedCase: ', capitalizedCase(str));
+  console.log('alternatingCase: ', alternatingCase(str));
+  console.log('titleCase: ', titleCase(str, lowercaseWords));
+  console.log('inverseCase: ', inverseCase(str));
+}
 
 function getCharacterFrequency(s) {
-
+  let frequency = {};
+  for (let i = 0; i < s.length; i++) {
+    let element = s[i];
+    if (element in frequency) {
+      frequency[element]++
+    } else {
+      frequency[element] = 1;
+    }
+  }
+  return frequency;
 }
 
-function printCharacterFrequency(s) {
-
+function printCharacterFrequency(object) {
+  // key, value object
+  for (let i in object) {
+    if (object[i] <= 1) {
+      console.log(`'${i}' occurs ${object[i]} time`);
+    } else {
+      console.log(`'${i}' occurs ${object[i]} times`);
+    }
+  }
 }
 
 function runCharacterFunctions() {
-  
   let str = 'Hello, World!';
-  
   let frequencyObj = getCharacterFrequency(str);
-  
+
   printCharacterFrequency(frequencyObj);
-  
 }
+
+runStringFunctions();
+runCharacterFunctions();
