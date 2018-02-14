@@ -149,7 +149,8 @@ function runStringFunctions() {
   console.log('capitalizedCase: ', capitalizedCase(str));
   console.log('alternatingCase: ', alternatingCase(str));
   console.log('titleCase: ', titleCase(str, lowercaseWords));
-  console.log('inverseCase: ', inverseCase(str));
+  // wanted a linebreak
+  console.log(`inverseCase: ${inverseCase(str)}\n`);
 }
 
 function getCharacterFrequency(s) {
