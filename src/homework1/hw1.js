@@ -53,8 +53,8 @@ function sentenceCase(s, array) {
     str = str.toLowerCase();
     const regex = /(^|\. *)([a-z])/g;
     return str.replace(regex, e => {
-      return e.toUpperCase()
-    })
+      return e.toUpperCase();
+    });
   };
   let temp = helper(s).split(' ');
   for (let i = 0; i < temp.length; i++) {
@@ -139,10 +139,10 @@ function inverseCase(s) {
 
 function runStringFunctions() {
   let str = 'I watched the storm, so beautiful yet terrific. The face of the moon was in shadow.';
-
+  
   let unconditionallyCapitalized = ['I', 'Moon', 'Shadow'];
   let lowercaseWords = ['the', 'of', 'in', 'an'];
-
+  
   console.log('upperCase: ', upperCase(str));
   console.log('lowerCase: ', lowerCase(str));
   console.log('sentenceCase: ', sentenceCase(str, unconditionallyCapitalized));
@@ -158,7 +158,7 @@ function getCharacterFrequency(s) {
   for (let i = 0; i < s.length; i++) {
     let element = s[i];
     if (element in frequency) {
-      frequency[element]++
+      frequency[element]++;
     } else {
       frequency[element] = 1;
     }
@@ -180,7 +180,7 @@ function printCharacterFrequency(object) {
 function runCharacterFunctions() {
   let str = 'Hello, World!';
   let frequencyObj = getCharacterFrequency(str);
-
+  
   printCharacterFrequency(frequencyObj);
 }
 
