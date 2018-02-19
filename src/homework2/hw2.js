@@ -99,23 +99,23 @@ combineName(person, ['first', 'last'], 'name');
 
 const people = [[{
   key: 'name',
-  value: 'Elon Musk'
+  value: 'Elon Musk',
 }, {
   key: 'twitter',
-  value: '@elonmusk'
+  value: '@elonmusk',
 }, {
   key: 'company',
-  value: 'Space X'
+  value: 'Space X',
 }],
 [{
   key: 'name',
-  value: 'Tim Cook'
+  value: 'Tim Cook',
 }, {
   key: 'twitter',
-  value: '@tim_cook'
+  value: '@tim_cook',
 }, {
   key: 'company',
-  value: 'Apple'
+  value: 'Apple',
 }]];
 
 function createObject(array) {
@@ -124,10 +124,10 @@ function createObject(array) {
   for (let i = 0; i < array.length; i++) {
     object = {
       1: {
-        name: array[i].name,
-        twitter: array[i].twitter,
-        company: array[i].company
-      }
+        name: array.name,
+        twitter: array[i].value,
+        company: array[i].value,
+      },
     };
   }
   // array.forEach((value) => {
@@ -143,3 +143,15 @@ function createObject(array) {
 }
 
 console.log(createObject(people));
+
+// const arr = [];
+// arr.push({ name: 'k1', value: 'abc' });
+// arr.push({ name: 'k2', value: 'hi' });
+// arr.push({ name: 'k3', value: 'oa' });
+//
+// const found = arr.filter(item => item.name === 'k1');
+//
+// console.log('found', found[0]);
+
+// const permittedValues = people.map(value => value.key);
+// console.log(Object.keys(people));
