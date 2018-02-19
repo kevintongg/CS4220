@@ -38,7 +38,7 @@ class Groups {
   }
 
   removeMember(groupName, memberName) {
-    this.list.forEach((item, index, object) => {
+    this.list.forEach((item) => {
       for (let i = 0; i < item.members.length; i++) {
         if (item.members[i].toLowerCase() === memberName.toLowerCase()) {
           item.members.splice(i, 1);
@@ -83,15 +83,63 @@ function displayName() {
   console.log(`${first} ${last}`);
 }
 
-displayName(person);
+// displayName(person);
 
 function combineName(object, key, destination) {
   const fullName = key.map(k => object[k]).filter(value => value).join(' ');
   delete person.first;
   delete person.last;
+
   object[destination] = fullName;
 }
 
 combineName(person, ['first', 'last'], 'name');
 
-console.log(person);
+// console.log(person);
+
+const people = [[{
+  key: 'name',
+  value: 'Elon Musk'
+}, {
+  key: 'twitter',
+  value: '@elonmusk'
+}, {
+  key: 'company',
+  value: 'Space X'
+}],
+[{
+  key: 'name',
+  value: 'Tim Cook'
+}, {
+  key: 'twitter',
+  value: '@tim_cook'
+}, {
+  key: 'company',
+  value: 'Apple'
+}]];
+
+function createObject(array) {
+  // const object = Object.assign({}, ...array);
+  let object = {};
+  for (let i = 0; i < array.length; i++) {
+    object = {
+      1: {
+        name: array[i].name,
+        twitter: array[i].twitter,
+        company: array[i].company
+      }
+    };
+  }
+  // array.forEach((value) => {
+  //   const key = Object.keys(value)[1];
+  //   object[key] = value[key];
+  // });
+  // return object;
+  // for (let i = 0; i < array.length; i++) {
+  //   object[array[i].key] = array[i].value;
+  // }
+
+  return object;
+}
+
+console.log(createObject(people));
