@@ -120,40 +120,18 @@ const people = [
 ];
 
 function createObject(array) {
-  // const object = Object.assign({}, ...array);
-  let object = {};
-  for (let i = 0; i < array.length; i++) {
-    object = {
-      1: {
-        name: array.name,
-        twitter: array[i].value,
-        company: array[i].value,
-      },
-    };
-  }
-  // array.forEach((value) => {
-  //   const key = Object.keys(value)[1];
-  //   object[key] = value[key];
-  // });
-  // return object;
-  // for (let i = 0; i < array.length; i++) {
-  //   object[array[i].key] = array[i].value;
-  // }
-
-  return object;
+  return {
+    1: {
+      name: array[0][0].value,
+      twitter: array[0][1].value,
+      company: array[0][2].value
+    },
+    2: {
+      name: array[1][0].value,
+      twitter: array[1][1].value,
+      company: array[1][2].value
+    }
+  };
 }
 
-// console.log(createObject(people));
-
-const object = {};
-// people.forEach((value, index) => {
-//   console.log(value, index);
-// });
-
-// for (const key of Object.keys(people)) {
-//   console.log(key, people[key]);
-// }
-
-const test = people.map(e => people[e]).join(', ');
-
-console.log(test);
+console.log(createObject(people));
