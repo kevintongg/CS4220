@@ -95,7 +95,7 @@ const person = {
 
 function displayName() {
   const { first, last } = person;
-  console.log(`${first} ${last}`);
+  console.log(`${first} ${last}\n`);
 }
 
 displayName(person);
@@ -111,6 +111,7 @@ function combineName(obj, key, dest) {
 combineName(person, ['first', 'last'], 'name');
 
 console.log(person);
+console.log();
 
 const people = [
   [{
