@@ -97,26 +97,27 @@ combineName(person, ['first', 'last'], 'name');
 
 // console.log(person);
 
-const people = [[{
-  key: 'name',
-  value: 'Elon Musk',
-}, {
-  key: 'twitter',
-  value: '@elonmusk',
-}, {
-  key: 'company',
-  value: 'Space X',
-}],
-[{
-  key: 'name',
-  value: 'Tim Cook',
-}, {
-  key: 'twitter',
-  value: '@tim_cook',
-}, {
-  key: 'company',
-  value: 'Apple',
-}]];
+const people = [
+  [{
+    key: 'name',
+    value: 'Elon Musk',
+  }, {
+    key: 'twitter',
+    value: '@elonmusk',
+  }, {
+    key: 'company',
+    value: 'Space X',
+  }], [{
+    key: 'name',
+    value: 'Tim Cook',
+  }, {
+    key: 'twitter',
+    value: '@tim_cook',
+  }, {
+    key: 'company',
+    value: 'Apple',
+  }]
+];
 
 function createObject(array) {
   // const object = Object.assign({}, ...array);
@@ -142,16 +143,17 @@ function createObject(array) {
   return object;
 }
 
-console.log(createObject(people));
+// console.log(createObject(people));
 
-// const arr = [];
-// arr.push({ name: 'k1', value: 'abc' });
-// arr.push({ name: 'k2', value: 'hi' });
-// arr.push({ name: 'k3', value: 'oa' });
-//
-// const found = arr.filter(item => item.name === 'k1');
-//
-// console.log('found', found[0]);
+const object = {};
+// people.forEach((value, index) => {
+//   console.log(value, index);
+// });
 
-// const permittedValues = people.map(value => value.key);
-// console.log(Object.keys(people));
+// for (const key of Object.keys(people)) {
+//   console.log(key, people[key]);
+// }
+
+const test = people.map(e => people[e]).join(', ');
+
+console.log(test);

@@ -52,11 +52,9 @@ function sentenceCase(s, array) {
   const helper = function (str) {
     str = str.toLowerCase();
     const regex = /(^|\. *)([a-z])/g;
-    return str.replace(regex, e => {
-      return e.toUpperCase();
-    });
+    return str.replace(regex, e => e.toUpperCase());
   };
-  let temp = helper(s).split(' ');
+  const temp = helper(s).split(' ');
   for (let i = 0; i < temp.length; i++) {
     for (let j = 1; j < array.length; j++) {
       array[j] = array[j].toLowerCase();
@@ -76,7 +74,7 @@ function sentenceCase(s, array) {
  * */
 
 function capitalizedCase(s) {
-  let split = s.toLowerCase().split(' ');
+  const split = s.toLowerCase().split(' ');
   for (let i = 0; i < split.length; i++) {
     split[i] = split[i].charAt(0).toUpperCase() + split[i].substr(1);
   }
@@ -91,7 +89,7 @@ function capitalizedCase(s) {
  * */
 
 function alternatingCase(s) {
-  let split = s.toLowerCase().split('');
+  const split = s.toLowerCase().split('');
   for (let i = 1; i < split.length; i += 2) {
     split[i] = split[i].toUpperCase();
   }
@@ -109,7 +107,7 @@ function alternatingCase(s) {
  * */
 
 function titleCase(s, array) {
-  let split = s.toLowerCase().split(' ');
+  const split = s.toLowerCase().split(' ');
   for (let i = 0; i < split.length; i++) {
     for (let j = 0; j < array.length; j++) {
       if (split[i] === array[j]) {
@@ -130,7 +128,7 @@ function titleCase(s, array) {
  * */
 
 function inverseCase(s) {
-  let split = s.toLowerCase().split(' ');
+  const split = s.toLowerCase().split(' ');
   for (let i = 0; i < split.length; i++) {
     split[i] = split[i].charAt(0).toLowerCase() + split[i].substr(1).toUpperCase();
   }
@@ -138,11 +136,11 @@ function inverseCase(s) {
 }
 
 function runStringFunctions() {
-  let str = 'I watched the storm, so beautiful yet terrific. The face of the moon was in shadow.';
-  
-  let unconditionallyCapitalized = ['I', 'Moon', 'Shadow'];
-  let lowercaseWords = ['the', 'of', 'in', 'an'];
-  
+  const str = 'I watched the storm, so beautiful yet terrific. The face of the moon was in shadow.';
+
+  const unconditionallyCapitalized = ['I', 'Moon', 'Shadow'];
+  const lowercaseWords = ['the', 'of', 'in', 'an'];
+
   console.log('upperCase: ', upperCase(str));
   console.log('lowerCase: ', lowerCase(str));
   console.log('sentenceCase: ', sentenceCase(str, unconditionallyCapitalized));
@@ -154,9 +152,9 @@ function runStringFunctions() {
 }
 
 function getCharacterFrequency(s) {
-  let frequency = {};
+  const frequency = {};
   for (let i = 0; i < s.length; i++) {
-    let element = s[i];
+    const element = s[i];
     if (element in frequency) {
       frequency[element]++;
     } else {
@@ -168,7 +166,7 @@ function getCharacterFrequency(s) {
 
 function printCharacterFrequency(object) {
   // key, value object
-  for (let i in object) {
+  for (const i in object) {
     if (object[i] <= 1) {
       console.log(`'${i}' occurs ${object[i]} time`);
     } else {
@@ -178,9 +176,9 @@ function printCharacterFrequency(object) {
 }
 
 function runCharacterFunctions() {
-  let str = 'Hello, World!';
-  let frequencyObj = getCharacterFrequency(str);
-  
+  const str = 'Hello, World!';
+  const frequencyObj = getCharacterFrequency(str);
+
   printCharacterFrequency(frequencyObj);
 }
 
