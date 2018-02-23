@@ -6,13 +6,13 @@ Complete all the problems below. 50 Points total.
 
 ---
 
-#### 1. Using callbacks print the URLs in order according to their response time. (25 pts)
+#### 1. Using callbacks print the URLs and their response time. (25 pts)
 Requirements
 - Use Callbacks - Do not block or make a synchronous function for getting times. Just use `http.get`
 - getTimes(argument, callback)
 This function gets the response time from the http request. it calls back to the the calling function.
-- orderTimes(sample)
-This function should call getTimes(...) and then order the times.
+- printTimes(sample)
+This function should call getTimes(...) and after all response times are gathered - it should then print the times.
 - HINT: use new Date()
 
 <br />
@@ -27,7 +27,7 @@ Note - The exact times do not matter - only make sure they are ordered low to hi
     ]
     // Example Printout
     // [
-    //     {  url: ''http://google.com/nothing', time: 18 },
+    //     {  url: 'http://google.com/nothing', time: 18 },
     //     {  url: 'https://www.google.com/', time: 21 },
     //     {  url: 'https://twitter.com/', time: 31 }
     //     {  url: 'https://www.spotify.com/us/', time: 279 }
@@ -39,5 +39,5 @@ Note - The exact times do not matter - only make sure they are ordered low to hi
     // Example Printout
     // {
     //     success: ['https://www.google.com/', 'https://www.spotify.com/us/', 'https://twitter.com /' ],
-    //     error: [''http://google.com/nothing']
+    //     error: ['http://google.com/nothing']
     // }

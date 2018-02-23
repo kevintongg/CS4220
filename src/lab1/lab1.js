@@ -1,41 +1,34 @@
 const http = require('http');
 
 const sample = [
-  'http://www.google.com/',
-  'http://www.spotify.com/us/',
+  'http://google.com/',
+  'http://spotify.com/us/',
   'http://twitter.com/',
-  'http://google.com/nothing',
+  'http://google.com/nothing'
 ];
 
-// const now = Date.now();
-// sample.forEach((e, i) => {
-//   http.get({
-//     host: e[i],
-//     port: 80,
-//   }, (response) => {
-//     console.log('Request took:', new Date() - now, 'ms');
-//   });
-// });
+const start = Date.now();
 
-// const start = Date.now();
-// http.get({ host: 'google.com', port: 80 }, (res) => {
-//   console.log('Request took:', new Date() - start, 'ms');
-// });
+const getTimes = (url, callback) => {
+  http.get(url, (res) => {
+    const error = 'Request failed.';
+    callback(error, Date.now() - start);
+  });
+};
 
-function orderTimes(array) {
-  const start = Date.now();
-  const getTimes = (arr, callback) => {
-    for (let i = 0; i < arr.length; i++) {
-      console.log(arr[i]);
-      http.get({
-        host: '' + arr[i],
-        port: 80,
-      }, (response) => {
-        console.log(`Request took: ${Date.now() - start}ms`);
+const printTimes = (array) => {
+  const list = [];
+  array.forEach((e, i) => {
+    getTimes(array[i], (err, result) => {
+      list.push({
+        url: array[i],
+        time: result,
       });
-    }
-  };
-  getTimes(array);
-}
+      if (i >= 3) {
+        console.log(list);
+      }
+    });
+  });
+};
 
-orderTimes(sample);
+printTimes(sample);
