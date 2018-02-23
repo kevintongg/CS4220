@@ -1,108 +1,58 @@
 const startTime = Date.now();
 
-// const myCallback = (data) => {
-//   console.log('got data: ' + data);
-// };
-//
-// const usingItNow = (callback) => {
-//   callback('get it?');
-// };
-//
-// usingItNow(myCallback);
-
-// const myPromise = new Promise(((resolve, reject) => {
-//   // code here
-//
-//   const night = true;
-//
-//   if (night) {
-//     resolve('fine');
-//   } else {
-//     reject('error');
-//   }
-// }));
-// myPromise.all
-//   .then((response) => {
-//     console.log(response);
-//     return response;
-//   })
-//   .catch((err) => {
-//     console.error(err);
-//   });
-
 const http = require('http');
 const https = require('https');
 
-const url =
-  'https://maps.googleapis.com/maps/api/geocode/json?address=Florence';
-https.get(url, (res) => {
-  res.setEncoding('utf8');
-  let body = '';
-  res.on('data', (data) => {
-    body += data;
-  });
-  res.on('end', () => {
-    body = JSON.parse(body);
-    console.log(
-      `City: ${body.results[0].formatted_address} -`,
-      `Latitude: ${body.results[0].geometry.location.lat} -`,
-      `Longitude: ${body.results[0].geometry.location.lng}`
-    );
-  });
-});
-
-
-// const timings = {
-//   // use process.hrtime() as it's not a subject of clock drift
-//   startAt: process.hrtime(),
-//   dnsLookupAt: undefined,
-//   tcpConnectionAt: undefined,
-//   tlsHandshakeAt: undefined,
-//   firstByteAt: undefined,
-//   endAt: undefined
-// };
+// const sample = [
+//   'http://www.google.com/',
+//   'http://www.spotify.com/us/',
+//   'http://twitter.com/',
+//   'http://google.com/nothing'
+// ];
 //
-// const req = http.request({ ... }, (res) => {
-//   res.once('readable', () => {
-//     timings.firstByteAt = process.hrtime()
+// sample.forEach((e) => {
+//   // http.get('http://httpbin.org/ip', (res) => {
+//   http.get(e, (res) => {
+//     res.setEncoding('utf8');
+//     let temp = '';
+//     res.on('data', (body) => {
+//       temp += body;
+//     });
+//     res.on('end', () => {
+//       console.log(`${Date.now() - startTime}ms`);
+//     });
 //   });
-//   res.on('data', (chunk) => {
-//     responseBody += chunk
-//   });
-//   res.on('end', () => {
-//     timings.endAt = process.hrtime()
-//   })
-// });
-// req.on('socket', (socket) => {
-//   socket.on('lookup', () => {
-//     timings.dnsLookupAt = process.hrtime()
-//   });
-//   socket.on('connect', () => {
-//     timings.tcpConnectionAt = process.hrtime()
-//   });
-//   socket.on('secureConnect', () => {
-//     timings.tlsHandshakeAt = process.hrtime()
-//   })
 // });
 
 
-const sample = [
-  'http://www.google.com/',
-  'http://www.spotify.com/us/',
-  'http://twitter.com/',
-  'http://google.com/nothing'
-];
+/* ES6 */
+const isMomHappy = true;
 
-sample.forEach((e) => {
-  // http.get('http://httpbin.org/ip', (res) => {
-  http.get(e, (res) => {
-    res.setEncoding('utf8');
-    let temp = '';
-    res.on('data', (body) => {
-      temp += body;
-    });
-    res.on('end', () => {
-      console.log(`${Date.now() - startTime}ms`);
-    });
-  });
+// Promise
+const willIGetNewPhone = new Promise((resolve, reject) => { // fat arrow
+  if (isMomHappy) {
+    const phone = {
+      brand: 'Samsung',
+      color: 'black'
+    };
+    resolve(phone);
+  } else {
+    const reason = new Error('mom is not happy');
+    reject(reason);
+  }
 });
+
+const showOff = function (phone) {
+  const message = `Hey friend, I have a new ${phone.color} ${phone.brand} phone`;
+  return Promise.resolve(message);
+};
+
+// call our promise
+const askMom = function () {
+  willIGetNewPhone
+    .then(showOff)
+    .then(fulfilled => console.log(fulfilled)) // fat arrow
+    .catch(error => console.log(error.message)); // fat arrow
+};
+
+askMom();

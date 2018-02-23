@@ -18,7 +18,7 @@
 // }, 10)
 // console.log('After')
 
-// // CALLBACKS
+// CALLBACKS
 const foods = [
   {
     food: 'pizza',
@@ -34,20 +34,20 @@ const foods = [
     time: null,
   },
 ];
-
-const cook = ({ food, time }, callback) => {
-  setTimeout(() => {
-    const error = !time ? `cannot cook ${food}` : null;
-    callback(error, `${food} is ready`);
-  }, time || 0);
-};
-
-cook({ food: 'pizza', time: 3000 }, (err, result) => {
-  console.log(result);
-});
-cook({ food: 'sandwich', time: 1000 }, (err, result) => {
-  console.log(result);
-});
+//
+// const cook = ({ food, time }, callback) => {
+//   setTimeout(() => {
+//     const error = !time ? `cannot cook ${food}` : null;
+//     callback(error, `${food} is ready`);
+//   }, time || 0);
+// };
+//
+// cook({ food: 'pizza', time: 3000 }, (err, result) => {
+//   console.log(result);
+// });
+// cook({ food: 'sandwich', time: 1000 }, (err, result) => {
+//   console.log(result);
+// });
 
 // const makeFood = (foods) => {
 //   foods.forEach((food) => {
@@ -62,53 +62,48 @@ cook({ food: 'sandwich', time: 1000 }, (err, result) => {
 // };
 // makeFood(foods);
 
-// // // PROMISES
-// const cookAgain = ({ food, time }) => new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     const error = !time ? `cannot cook ${food}` : null;
-//     if (error) {
-//       reject(error);
-//     } else {
-//       resolve(`${food} is ready`);
-//     }
-//   }, time);
-// })
+// PROMISES
+const cookAgain = ({ food, time }) => new Promise((resolve, reject) => {
+  setTimeout(() => {
+    const error = !time ? `cannot cook ${food}` : null;
+    if (error) {
+      reject(error);
+    } else {
+      resolve(`${food} is ready`);
+    }
+  }, time);
+});
 // cookAgain({ food: 'pizza', time: 3000 })
-//     .then((result) => {
-//         console.log(result)
-//     })
-
+//   .then((result) => {
+//     console.log(result);
+//   });
+//
 // cookAgain({ food: 'sandwich', time: 1000 })
-//     .then((result) => {
-//         console.log(result)
-//     })
+//   .then((result) => {
+//     console.log(result);
+//   });
 
-// // // LOOP PROMISES
+// LOOP PROMISES
 // const makeFoodAgain = (foods) => {
-//     foods.forEach((food) => {
-//         cookAgain(food)
-//             .then((result) => {
-//                 console.log(result)
-//             })
-//             .catch(error => {
-//                 console.log('error', error)
-//             })
-//     })
-// }
-// makeFoodAgain(foods)
+//   foods.forEach((food) => {
+//     cookAgain(food).then((result) => {
+//       console.log(result);
+//     }).catch((error) => {
+//       console.log('error', error);
+//     });
+//   });
+// };
+// makeFoodAgain(foods);
 
-// // // PROMISE ALL
-// const makeAllFoods = (foods) => {
-//     const promises = foods.map((food) => {
-//         return cookAgain(food)
-//     })
+// PROMISE ALL
+const makeAllFoods = (foods) => {
+  const promises = foods.map(food => cookAgain(food));
 
-//     Promise.all(promises)
-//         .then((results) => {
-//             console.log(results)
-//         })
-//         .catch(error => {
-//             console.log('error', error)
-//         })
-// }
-// makeAllFoods(foods)
+  Promise.all(promises).then((results) => {
+    console.log(results);
+  }).catch((error) => {
+    console.log('error', error);
+  });
+};
+
+makeAllFoods(foods);
