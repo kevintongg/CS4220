@@ -15,4 +15,3 @@ exports.deck = (shuffle) => {
 exports.draw = (deck, n) => fetch(`/deck/${deck}/draw/?count=${n}`);
 
 exports.shuffle = (deck, n) => fetch(`deck/${deck}/shuffle/`);
-
