@@ -16,11 +16,14 @@
   "dependencies": {
     "babel-eslint": "^8.2.2",
     "cheerio": "^1.0.0-rc.2",
+    "inquirer": "^5.1.0",
     "jquery": "^3.3.1",
-    "request": "^2.83.0"
+    "npm": "^5.7.1",
+    "request": "^2.83.0",
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
-    "eslint": "^4.18.1",
+    "eslint": "^4.18.2",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",

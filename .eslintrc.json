@@ -27,6 +27,8 @@
     "default-case": "off",
     "array-callback-return": "off",
     "no-underscore-dangle": "off",
-    "comma-dangle": 0
+    "comma-dangle": 0,
+    "no-shadow": "off",
+    "no-use-before-define": "off"
   }
 }
