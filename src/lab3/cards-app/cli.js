@@ -16,5 +16,12 @@ const flags = yargs.usage('$0: Usage <cmd> [options]')
       app.draw(argv.shuffle, argv.number);
     }
   })
+  .command({
+    command: 'play',
+    desc: 'Play a 5 card draw game',
+    handler: (argv) => {
+      app.play();
+    }
+  })
   .help('help')
   .argv;

@@ -41,5 +41,5 @@ const play = () => {
 };
 
 module.exports = {
-  draw,
+  draw
 };

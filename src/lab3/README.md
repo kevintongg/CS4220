@@ -1,7 +1,7 @@
 
-## Week 06 Lab 03/25 - Due 03/04 6:30PM - KH Lecture Hall 2
+## Week 06 Lab 03/25 - Due 03/04 6:30PM - KH Lecture Hall 2 (50 pts)
 
-#### Build a new feature in the Cards App example from Lecture (50 pts)
+#### Build a new feature called play() in the Cards App example from Lecture. The cards-app CLI will have two commands, draw and play. The draw command use the draw() method that was implemented in class. Do not modify this method.  Add a new command play that uses your implementation of a play() method following the instructions below.
 
 ---
 
@@ -9,7 +9,8 @@
   - Run by typing: node cli.js play
 
 **(2) Automatically Shuffle and draw 5 cards**
-  - Use the draw() method already created in the class example
+  - Use the deck() and draw() methods from the deckofcards module already created in the class example
+  - ***DO NOT*** modify the draw() method in the app.js - there is no reason to touch that function
 
 **(3) Prompt the user and allow them to throw away up to 4 cards**
   - Use inquirer to create a prompt with a checkbox selection feature
@@ -33,4 +34,3 @@
 
     --- REMAINING CARDS ---
     45
-

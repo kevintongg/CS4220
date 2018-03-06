@@ -28,7 +28,7 @@ class Quiz {
       type: 'input',
       name: 'answer',
       message: `${this.question.n1} ${this.question.op} ${this.question.n2} =`,
-      filter: input => parseInt(input),
+      filter: input => parseInt(input)
     }]).then((input) => {
       this.isRight(input.answer);
     });
@@ -52,5 +52,6 @@ class Quiz {
       default:
         console.log('no method');
     }
+    return this;
   }
 }
