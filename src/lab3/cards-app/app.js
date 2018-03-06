@@ -12,7 +12,7 @@ const draw = (shuffle, n = 1) => {
       result.cards.forEach((card) => {
         console.log(`${card.value} of ${card.suit}`);
       });
-      console.log('-- REMAING CARDS --');
+      console.log('-- REMAINING CARDS --');
       console.log(result.remaining);
     })
     .catch(err => console.log(err));
@@ -97,5 +97,5 @@ const play = () => {
 };
 
 module.exports = {
-  play
+  draw, play,
 };
