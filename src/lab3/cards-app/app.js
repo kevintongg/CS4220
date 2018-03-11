@@ -3,6 +3,7 @@ const inquirer = require('inquirer');
 
 const s = 'shuffle';
 const d = 'draw';
+const hand = 5;
 
 const draw = (shuffle, n = 1) => {
   cards.deck(shuffle)
@@ -38,15 +39,15 @@ const discardPrompt = (result) => {
     message: 'select cards to throw away',
     name: 'cards',
     choices: array,
-    validate: (response) => {
-      if (response.length < 1) {
-        return 'You must choose one or more cards!';
+    validate: (choice) => {
+      if (choice.length < 1) {
+        return 'You must choose at least one card!';
       }
       return true;
     } // implement
-  }]).then((response) => {
-    const currentCards = findAndRemove(result.cards, response.cards);
-    cards.draw(result.deck_id, response.cards.length)
+  }]).then((choice) => {
+    const currentCards = findAndRemove(result.cards, choice.cards);
+    cards.draw(result.deck_id, choice.cards.length)
       .then((result) => {
         currentCards.forEach(card => result.cards.push(card));
         print(result);
@@ -61,7 +62,7 @@ const findAndRemove = (currentCards, throwawayCards) => {
     const temp = throwawayCards[i].split(' ');
     let n = 0;
     for (const j in currentCards) {
-      if (currentCards[j].value === temp[0] && currentCards[j].suit === temp[2]) {
+      if (currentCards[j].value === temp[j] && currentCards[j].suit === temp[j]) {
         n = j;
       }
     }
@@ -91,7 +92,7 @@ const print = (cards) => {
 
 const play = () => {
   cards.deck(s)
-    .then(deck => cards.draw(deck.deck_id, 5))
+    .then(deck => cards.draw(deck.deck_id, hand))
     .then(result => discardPrompt(result))
     .catch(error => console.error(error));
 };
