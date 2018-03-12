@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chuck Norris Jokes</title>
+
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+
+</head>
+<body>
+<div id="chuck" class="container">
+  <select v-model="selection">
+    <option v-for="category in categories" :value="item">{{ item }}</option>
+  </select>
+  <section class="callout secondary">
+    <h5 class="text-center">Filter by Category</h5>
+    <form>
+      <div class="row">
+        <div class="large-6 columns">
+          <select v-model="section">
+            <option v-for="section in sections" :value="section">{{ section }}</option>
+          </select>
+        </div>
+        <div class="medium-6 columns">
+          <a @click="getPosts(section)" class="button expanded">Retrieve</a>
+        </div>
+      </div>
+    </form>
+  </section>
+</div>
+
+<script type="text/javascript" src="scripts/vue.js"></script>
+<script type="text/javascript" src="scripts/axios.min.js"></script>
+<script type="text/javascript" src="scripts/app.js"></script>
+
+</body>
+</html>

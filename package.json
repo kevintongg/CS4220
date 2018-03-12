@@ -14,6 +14,7 @@
   },
   "homepage": "https://github.com/kevintongg/CS4220#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-eslint": "^8.2.2",
     "cheerio": "^1.0.0-rc.2",
     "deckofcards": "1.0.0",
