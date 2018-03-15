@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:v-bind="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue Guide</title>
+
+  <link rel="stylesheet" href="styles/bootstrap.min.css">
+  <script src="scripts/vue.js"></script>
+</head>
+<body>
+<div id="app" class="container">
+  {{ message }}
+</div>
+<div id="app-2">
+  <span v-bind:title="message">
+    Hover your mouse over me for a few seconds to see my dynamically bound title!
+  </span>
+  <div id="app-3">
+    <span v-if="seen">Now you see me</span>
+  </div>
+</div>
+<script src="scripts/app.js"></script>
+</body>
+</html>

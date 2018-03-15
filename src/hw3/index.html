@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
+      lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Chuck Norris Jokes</title>
@@ -8,25 +9,13 @@
 
 </head>
 <body>
-<div id="chuck" class="container">
-  <select v-model="selection">
-    <option v-for="category in categories" :value="item">{{ item }}</option>
+<div id="dropdown" class="container">
+  <select v-model="categories">
+    <option v-for="category in categories" v-bind:="getCategories">
+      {{ category }}
+    </option>
   </select>
-  <section class="callout secondary">
-    <h5 class="text-center">Filter by Category</h5>
-    <form>
-      <div class="row">
-        <div class="large-6 columns">
-          <select v-model="section">
-            <option v-for="section in sections" :value="section">{{ section }}</option>
-          </select>
-        </div>
-        <div class="medium-6 columns">
-          <a @click="getPosts(section)" class="button expanded">Retrieve</a>
-        </div>
-      </div>
-    </form>
-  </section>
+  <button v-on:click="getCategories">Kappa</button>
 </div>
 
 <script type="text/javascript" src="scripts/vue.js"></script>
@@ -35,3 +24,24 @@
 
 </body>
 </html>
+
+<!--<div id="chuck" class="container">-->
+<!--<select v-model="selection">-->
+<!--<option v-for="category in categories" :value="item">{{ item }}</option>-->
+<!--</select>-->
+<!--<section class="callout secondary">-->
+<!--<h5 class="text-center">Filter by Category</h5>-->
+<!--<form>-->
+<!--<div class="row">-->
+<!--<div class="large-6 columns">-->
+<!--<select v-model="section">-->
+<!--<option v-for="section in sections" :value="section">{{ section }}</option>-->
+<!--</select>-->
+<!--</div>-->
+<!--<div class="medium-6 columns">-->
+<!--<a @click="getPosts(section)" class="button expanded">Retrieve</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</form>-->
+<!--</section>-->
+<!--</div>-->
