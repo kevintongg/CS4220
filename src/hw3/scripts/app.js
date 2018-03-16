@@ -7,31 +7,35 @@ const app = new Vue({
   el: '#app',
   data() {
     return {
-      categories: [],
+      categories: '',
       current: '',
-      history: [],
+      history: '',
       selection: '',
       searchTerm: '',
-      queries: [],
+      queries: '',
     };
   },
   methods: {
     getCategories() {
       const vm = this;
+      const categoryList = [];
       axios({
         method: 'get',
         url: categories,
       })
         .then((response) => {
-          vm.categories = [];
-          vm.categories.push('any');
-          response.data.forEach(element => vm.categories.push(element));
+          categoryList.push('any');
+          response.data.forEach(element => categoryList.push(element));
+        })
+        .then(() => {
+          vm.categories = categoryList;
         })
         .then(() => console.log(this.categories))
         .catch(error => alert(error));
     },
     getCategoryJoke() {
       const vm = this;
+      const historyList = [];
       if (vm.selection === 'any' || vm.selection === '') {
         axios({
           method: 'get',
@@ -40,9 +44,10 @@ const app = new Vue({
           .then((response) => {
             console.log(response);
             if (vm.current) {
-              vm.history.push(vm.current);
+              historyList.push(vm.current);
             }
             vm.current = response.data.value;
+            vm.history = historyList;
           })
           .catch(error => alert(error));
       } else {
@@ -53,25 +58,29 @@ const app = new Vue({
           .then((response) => {
             console.log(response);
             if (vm.current) {
-              vm.history.push(vm.current);
+              historyList.push(vm.current);
             }
             vm.current = response.data.value;
+            vm.history = historyList;
           })
           .catch(error => alert(error));
       }
     },
     search() {
       const vm = this;
+      const queryList = [];
       axios({
         method: 'get',
         url: `${search}${vm.searchTerm}`,
       })
         .then((response) => {
           console.log(response);
-          vm.queries = [];
-          response.data.result.forEach(element => vm.queries.push(element.value));
+          response.data.result.forEach(element => queryList.push(element.value));
+        })
+        .then(() => {
+          vm.queries = queryList;
         })
         .catch(error => alert(error));
-    }
-  }
+    },
+  },
 });

@@ -28,7 +28,7 @@
 
   <div>
     <p>
-      <button type="button" class="btn btn-outline-primary" v-on:click="getCategories">
+      <button type="button" class="btn btn-outline-warning" v-on:click="getCategories">
         Click this button to load categories!
       </button>
     </p>
@@ -38,7 +38,7 @@
     Choose your category:
     <label>
       <select v-model="selection" class="form-control">
-        <option value="" selected disabled hidden>any</option>
+        <option value="" selected hidden>any</option>
         <option v-for="item in categories">
           {{ item }}
         </option>

@@ -19,7 +19,7 @@
     "cheerio": "^1.0.0-rc.2",
     "deckofcards": "1.0.0",
     "inquirer": "^5.1.0",
-    "request": "^2.83.0",
+    "request": "^2.85.0",
     "superagent": "^3.8.2",
     "yargs": "^11.0.0"
   },
