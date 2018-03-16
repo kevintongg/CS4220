@@ -38,6 +38,7 @@
     Choose your category:
     <label>
       <select v-model="selection" class="form-control">
+        <option value="" selected disabled hidden>any</option>
         <option v-for="element in categoryList">
           {{ element }}
         </option>

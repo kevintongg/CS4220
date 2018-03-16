@@ -17,6 +17,10 @@ const app = new Vue({
     };
   },
 
+  loaded: () => {
+    this.categoryList.push('any');
+  },
+
   methods: {
     getCategories() {
       const vm = this;
