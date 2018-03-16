@@ -1,104 +1,80 @@
-const randomJokeURL = 'https://api.chucknorris.io/jokes/random';
-const categoriesURL = 'https://api.chucknorris.io/jokes/categories';
+const categories = 'https://api.chucknorris.io/jokes/categories';
+const random = 'https://api.chucknorris.io/jokes/random';
+const category = 'https://api.chucknorris.io/jokes/random?category=';
+const search = 'https://api.chucknorris.io/jokes/search?query=';
 
+const app = new Vue({
+  el: '#app',
 
-const SECTIONS = 'home, arts, automobiles, books, business, fashion, food, health, insider, magazine, movies, national, nyregion, obituaries, opinion, politics, realestate, science, sports, sundayreview, technology, theater, tmagazine, travel, upshot, world'; // From NYTimes
-
-// Vue.component('dropdown', {
-//   template: '#categories',
-//
-//   mounted: () => {
-//     this.getCategories()
-//       .then(data => this.getCa);
-//   },
-//
-//   data: () => ({
-//     categories: []
-//   }),
-//
-//   methods: {
-//     getCategories: () => {
-//       const d = $.Deferred();
-//     }
-//   }
-// });
-
-const categories = new Vue({
-  el: '#dropdown',
-
-  data: {
-    categories: [],
+  data() {
+    return {
+      categoryList: [],
+      currentJoke: '',
+      previousJokes: [],
+      selection: '',
+      searchTerm: '',
+      searchList: [],
+    };
   },
 
   methods: {
-    // getCategories: () => {
-    //   const vm = this;
-    //   axios({
-    //     method: 'get',
-    //     url: categoriesURL,
-    //     responseType: 'application/json',
-    //   })
-    //     .then((response) => {
-    //       response.data.forEach(e => vm.categories.push(e));
-    //     })
-    //     .then(() => console.log(this.categories))
-    //     .catch(error => console.error(error));
-    // }
-    getCategories: () => {
+    getCategories() {
       const vm = this;
-      const categoryList = [];
-      axios.get(categoriesURL, {
-        headers: {
-          Accept: 'application/json',
-        }
+      axios({
+        method: 'get',
+        url: categories,
+      })
+        .then((response) => {
+          vm.categoryList.push('any');
+          response.data.forEach(element => vm.categoryList.push(element));
+        })
+        .then(() => console.log(this.categoryList))
+        .catch(error => alert(error));
+    },
+
+    getCategoryJoke() {
+      const vm = this;
+      if (vm.selection === 'any' || vm.selection === '') {
+        axios({
+          method: 'get',
+          url: random,
+        })
+          .then((response) => {
+            console.log(response);
+            if (vm.currentJoke) {
+              vm.previousJokes.push(vm.currentJoke);
+            }
+            vm.currentJoke = response.data.value;
+          })
+          .catch(error => alert(error));
+      } else {
+        axios({
+          method: 'get',
+          url: `${category}${vm.selection}`,
+        })
+          .then((response) => {
+            console.log(response);
+            if (vm.currentJoke) {
+              vm.previousJokes.push(vm.currentJoke);
+            }
+            vm.currentJoke = response.data.value;
+          })
+          .catch(error => alert(error));
+      }
+    },
+
+    search() {
+      const vm = this;
+      axios({
+        method: 'get',
+        url: `${search}${vm.searchTerm}`,
       })
         .then((response) => {
           console.log(response);
-          // vm.categories.push(vm.data);
-          response.data.forEach(e => categoryList.push(e));
+          vm.searchList = [];
+          response.data.result.forEach(element => vm.searchList.push(element.value));
         })
-        .then(() => categoryList)
-        .catch(error => console.error(error));
+        .catch(error => alert(error));
     }
   }
 });
-
-// axios({
-//   method: 'get',
-//   url: categoriesURL,
-//   responseType: 'application/json',
-// })
-//   .then((response) => {
-//     response.data.forEach(e => categoryList.push(e));
-//   })
-//   .then(() => console.log(categoryList))
-//   .catch(error => console.error(error));
-//
-// setTimeout(() => {
-//   const chuck = new Vue({
-//     el: '#chuck',
-//     data: {
-//       appName: 'Chuck Norris Jokes',
-//       categories: categoryList,
-//       category: 'Any',
-//       isLoading: false,
-//       sections: SECTIONS.split(', '), // create an array of the sections
-//       section: 'home', // set default section to 'home'
-//     },
-//     methods: {
-//       getJoke() {
-//         this.isLoading = true;
-//         const vm = this;
-//
-//         axios.get('https://api.chucknorris.io/jokes/random', {
-//           headers: {
-//             Accept: 'application/json'
-//           }
-//         })
-//           .then((response) => {
-//             vm.isLoading = false;
-//           });
-//       }
-//     }
-//   });
-// }, 1000);

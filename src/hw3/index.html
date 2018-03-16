@@ -1,21 +1,101 @@
 <!DOCTYPE html>
-<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml"
-      lang="en">
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Chuck Norris Jokes</title>
 
   <link rel="stylesheet" href="styles/bootstrap.min.css">
 
+  <style>
+    [v-cloak] {
+      display: none;
+    }
+  </style>
+
 </head>
 <body>
-<div id="dropdown" class="container">
-  <select v-model="categories">
-    <option v-for="category in categories" v-bind:="getCategories">
-      {{ category }}
-    </option>
-  </select>
-  <button v-on:click="getCategories">Kappa</button>
+<div id="app" class="container" v-cloak>
+  <div class="text-center">
+    <h1>Chuck Norris Jokes</h1>
+  </div>
+
+  <hr/>
+
+  <div>
+    <p class="text-center"><strong>You can either search from a category or enter a search
+      term.</strong></p>
+  </div>
+
+  <div>
+    <p>
+      <button type="button" class="btn btn-outline-primary" v-on:click="getCategories">
+        Click this button to load categories!
+      </button>
+    </p>
+  </div>
+
+  <span>
+    Choose your category:
+    <label>
+      <select v-model="selection" class="form-control">
+        <option v-for="element in categoryList">
+          {{ element }}
+        </option>
+      </select>
+    </label>
+  </span>
+
+  <div>
+    <p>
+      <button type="button" class="btn btn-outline-primary" v-on:click="getCategoryJoke">
+        Get joke
+      </button>
+    </p>
+    <br/>
+  </div>
+
+  <span>
+    <label class="sr-only" for="inlineFormInput">Name</label>
+    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput"
+           placeholder="Enter a search term" v-model="searchTerm">
+    <br/>
+  </span>
+
+  <div>
+    <p>
+      <button type="button" class="btn btn-outline-info" v-on:click="search">
+        Search
+      </button>
+    </p>
+    <br/>
+  </div>
+
+  <span>
+    <strong>Current joke:</strong>
+    <span>{{ currentJoke }}</span>
+  </span>
+
+  <hr/>
+
+  <div>
+    <h4>History</h4>
+    <ol>
+      <li v-for="element in previousJokes">
+        {{ element }}
+      </li>
+    </ol>
+  </div>
+
+  <hr/>
+
+  <div>
+    <h4>Search Results</h4>
+    <ol>
+      <li v-for="element in searchList">
+        {{ element }}
+      </li>
+    </ol>
+  </div>
 </div>
 
 <script type="text/javascript" src="scripts/vue.js"></script>
@@ -24,24 +104,3 @@
 
 </body>
 </html>
-
-<!--<div id="chuck" class="container">-->
-<!--<select v-model="selection">-->
-<!--<option v-for="category in categories" :value="item">{{ item }}</option>-->
-<!--</select>-->
-<!--<section class="callout secondary">-->
-<!--<h5 class="text-center">Filter by Category</h5>-->
-<!--<form>-->
-<!--<div class="row">-->
-<!--<div class="large-6 columns">-->
-<!--<select v-model="section">-->
-<!--<option v-for="section in sections" :value="section">{{ section }}</option>-->
-<!--</select>-->
-<!--</div>-->
-<!--<div class="medium-6 columns">-->
-<!--<a @click="getPosts(section)" class="button expanded">Retrieve</a>-->
-<!--</div>-->
-<!--</div>-->
-<!--</form>-->
-<!--</section>-->
-<!--</div>-->
