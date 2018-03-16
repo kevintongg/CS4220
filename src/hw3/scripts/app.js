@@ -5,22 +5,16 @@ const search = 'https://api.chucknorris.io/jokes/search?query=';
 
 const app = new Vue({
   el: '#app',
-
   data() {
     return {
-      categoryList: [],
-      currentJoke: '',
-      previousJokes: [],
+      categories: [],
+      current: '',
+      history: [],
       selection: '',
       searchTerm: '',
-      searchList: [],
+      queries: [],
     };
   },
-
-  loaded: () => {
-    this.categoryList.push('any');
-  },
-
   methods: {
     getCategories() {
       const vm = this;
@@ -29,13 +23,13 @@ const app = new Vue({
         url: categories,
       })
         .then((response) => {
-          vm.categoryList.push('any');
-          response.data.forEach(element => vm.categoryList.push(element));
+          vm.categories = [];
+          vm.categories.push('any');
+          response.data.forEach(element => vm.categories.push(element));
         })
-        .then(() => console.log(this.categoryList))
+        .then(() => console.log(this.categories))
         .catch(error => alert(error));
     },
-
     getCategoryJoke() {
       const vm = this;
       if (vm.selection === 'any' || vm.selection === '') {
@@ -45,10 +39,10 @@ const app = new Vue({
         })
           .then((response) => {
             console.log(response);
-            if (vm.currentJoke) {
-              vm.previousJokes.push(vm.currentJoke);
+            if (vm.current) {
+              vm.history.push(vm.current);
             }
-            vm.currentJoke = response.data.value;
+            vm.current = response.data.value;
           })
           .catch(error => alert(error));
       } else {
@@ -58,15 +52,14 @@ const app = new Vue({
         })
           .then((response) => {
             console.log(response);
-            if (vm.currentJoke) {
-              vm.previousJokes.push(vm.currentJoke);
+            if (vm.current) {
+              vm.history.push(vm.current);
             }
-            vm.currentJoke = response.data.value;
+            vm.current = response.data.value;
           })
           .catch(error => alert(error));
       }
     },
-
     search() {
       const vm = this;
       axios({
@@ -75,8 +68,8 @@ const app = new Vue({
       })
         .then((response) => {
           console.log(response);
-          vm.searchList = [];
-          response.data.result.forEach(element => vm.searchList.push(element.value));
+          vm.queries = [];
+          response.data.result.forEach(element => vm.queries.push(element.value));
         })
         .catch(error => alert(error));
     }

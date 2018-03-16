@@ -39,8 +39,8 @@
     <label>
       <select v-model="selection" class="form-control">
         <option value="" selected disabled hidden>any</option>
-        <option v-for="element in categoryList">
-          {{ element }}
+        <option v-for="item in categories">
+          {{ item }}
         </option>
       </select>
     </label>
@@ -73,7 +73,7 @@
 
   <span>
     <strong>Current joke:</strong>
-    <span>{{ currentJoke }}</span>
+    <span>{{ current }}</span>
   </span>
 
   <hr/>
@@ -81,8 +81,8 @@
   <div>
     <h4>History</h4>
     <ol>
-      <li v-for="element in previousJokes">
-        {{ element }}
+      <li v-for="item in history">
+        {{ item }}
       </li>
     </ol>
   </div>
@@ -92,8 +92,8 @@
   <div>
     <h4>Search Results</h4>
     <ol>
-      <li v-for="element in searchList">
-        {{ element }}
+      <li v-for="query in queries">
+        {{ query }}
       </li>
     </ol>
   </div>
