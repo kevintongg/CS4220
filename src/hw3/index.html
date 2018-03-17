@@ -26,19 +26,10 @@
       term.</strong></p>
   </div>
 
-  <div>
-    <p>
-      <button type="button" class="btn btn-outline-warning" v-on:click="getCategories">
-        Click this button to load categories!
-      </button>
-    </p>
-  </div>
-
   <span>
     Choose your category:
     <label>
       <select v-model="selection" class="form-control">
-        <option value="" selected hidden>any</option>
         <option v-for="item in categories">
           {{ item }}
         </option>
