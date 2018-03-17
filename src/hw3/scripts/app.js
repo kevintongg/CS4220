@@ -26,7 +26,6 @@ const app = new Vue({
         vm.categories.push('any');
         response.data.forEach(element => vm.categories.push(element));
       })
-      .then(() => console.log(this.categories))
       .catch(error => alert(error));
   },
   methods: {
@@ -38,7 +37,6 @@ const app = new Vue({
           url: random,
         })
           .then((response) => {
-            console.log(response);
             if (vm.current) {
               vm.history.push(vm.current);
             }
@@ -51,7 +49,6 @@ const app = new Vue({
           url: `${category}${vm.selection}`,
         })
           .then((response) => {
-            console.log(response);
             if (vm.current) {
               vm.history.push(vm.current);
             }
@@ -67,7 +64,6 @@ const app = new Vue({
         url: `${search}${vm.searchTerm}`,
       })
         .then((response) => {
-          console.log(response);
           vm.queries = [];
           response.data.result.forEach(element => vm.queries.push(element.value));
         })
