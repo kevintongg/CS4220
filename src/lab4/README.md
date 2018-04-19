@@ -1,7 +1,7 @@
 
 ## Week 12 Lab 04/15 - Due 04/19 11:59PM - KH Lecture Hall 2 (50 pts)
 
-#### Build new features in Chat App from class Lecture.
+#### Build new features in Chat App from class lecture.
 
 ---
 
