@@ -37,7 +37,7 @@ const app = new Vue({
     user: {},
     users: [],
     message: '',
-    messages: []
+    messages: [],
   },
   methods: {
     joinUser() {
@@ -52,7 +52,7 @@ const app = new Vue({
       }
       socket.emit('send-message', {
         message: this.message,
-        user: this.user
+        user: this.user,
       });
     }
   },

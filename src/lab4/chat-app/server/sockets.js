@@ -17,7 +17,7 @@ module.exports = (server) => {
     socket.on('join-user', (userName) => {
       const user = {
         id: socket.id,
-        name: userName
+        name: userName,
       };
 
       for (let i = 0; i < users.length; i++) {
@@ -35,7 +35,7 @@ module.exports = (server) => {
       const content = {
         user: data.user,
         message: data.message,
-        date: moment(new Date()).format('MM/DD/YY h:mm a')
+        date: moment(new Date()).format('MM/DD/YY h:mm a'),
       };
       messages.push(content);
 
