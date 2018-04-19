@@ -31,11 +31,11 @@ Try sending messages and making sure the avatars and messages appear correctly f
 #### Sample Screen Shots
 
 (1) User name already exists
-![Q1](src/lab4/chat-app/lab-images/user-avatar-chat.jpg)
+![Q1](/src/lab4/chat-app/lab-images/user-avatar-chat.jpg)
 
 (2) Avatars in Chat Box
 ![Q2](/src/lab4/chat-app/lab-images/user-name-exists.jpg)
 
 (3) Welcome Message with Avatar and Name
-![Q3](src/lab4/chat-app/lab-images/user-welcome-message.jpg)
+![Q3](/src/lab4/chat-app/lab-images/user-welcome-message.jpg)
 
