@@ -2,8 +2,8 @@ module.exports = (server) => {
   // const io = require('socket.io')(server);
   // const moment = require('moment');
 
-  const io = import('socket.io')(server);
-  const moment = import('moment');
+  const io = require('socket.io')(server);
+  const moment = require('moment');
 
   let users = [];
   const messages = [];
