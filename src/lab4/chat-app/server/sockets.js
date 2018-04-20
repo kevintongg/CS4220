@@ -15,18 +15,17 @@ module.exports = (server) => {
     socket.emit('refresh-users', users);
 
     socket.on('join-user', (userName) => {
+      if (users.some(entry => entry.name.toLowerCase() === userName.toLowerCase())) {
+        return io.emit('failed-join', userName);
+      }
+
       const user = {
         id: socket.id,
         name: userName,
+        avatar: `https://robohash.org/${userName}?set=set4`
       };
 
-      for (let i = 0; i < users.length; i++) {
-        if (users[i].name !== userName) {
-          users.push(user);
-        } else {
-          io.emit('failed-join', user);
-        }
-      }
+      users.push(user);
 
       io.emit('successful-join', user);
     });
@@ -35,7 +34,7 @@ module.exports = (server) => {
       const content = {
         user: data.user,
         message: data.message,
-        date: moment(new Date()).format('MM/DD/YY h:mm a'),
+        date: moment(new Date()).format('MM/DD/YY h:mm a')
       };
       messages.push(content);
 

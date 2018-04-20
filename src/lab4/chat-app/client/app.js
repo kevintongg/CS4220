@@ -1,29 +1,43 @@
 // Chat Component
 const chatComponent = {
   template: ` <div class="chat-box">
-                   <p v-for="data in content">
-                       <img src="https://robohash.org/userName?set=set3" class="circle" width="30px">
-                       <span><strong>{{data.user.name}}</strong> <small>{{data.date}}</small><span>
-                       <br />
-                       {{data.message}}
-                   </p>
-               </div>`,
+                <p v-for="data in content">
+                  <img :src=data.user.avatar class="circle" width="30px">
+                  <span>
+                    <strong>{{data.user.name}}</strong> <small>{{data.date}}</small>
+                  </span>
+                  <br />
+                  {{data.message}}
+                </p>
+              </div>`,
   props: ['content']
 };
 
 // Users Component
 const usersComponent = {
   template: ` <div class="user-list">
-                   <h6>Active Users ({{users.length}})</h6>
-                   <ul v-for="user in users">
-                       <li>
-                            <img src="https://robohash.org/userName?set=set3" class="circle" width="30px">
-                            <span>{{user.name}}</span>
-                       </li>
-                       <hr>
-                   </ul>
-               </div>`,
+                <h6>Active Users ({{users.length}})</h6>
+                <ul v-for="user in users">
+                  <li>
+                    <img :src="user.avatar" class="circle" width="30px">
+                    <span>{{user.name}}</span>
+                  </li>
+                  <hr>
+                </ul>
+              </div>`,
   props: ['users']
+};
+
+const welcomeComponent = {
+  template: ` <div class="me">
+                <h5>Welcome!</h5>
+                <img :src=user.avatar class="circle" width="100px">
+                <div style="font-size: 20px">
+                  {{ user.name }}
+                </div>
+              </div>
+`,
+  props: ['user']
 };
 
 // Welcome Component
@@ -33,11 +47,12 @@ const app = new Vue({
   el: '#chat-app',
   data: {
     loggedIn: false,
+    duplicateUser: false,
     userName: '',
     user: {},
     users: [],
     message: '',
-    messages: [],
+    messages: []
   },
   methods: {
     joinUser() {
@@ -52,16 +67,16 @@ const app = new Vue({
       }
       socket.emit('send-message', {
         message: this.message,
-        user: this.user,
+        user: this.user
       });
     }
   },
   components: {
     'users-component': usersComponent,
-    'chat-component': chatComponent
+    'chat-component': chatComponent,
+    'welcome-component': welcomeComponent
   }
 });
-
 
 // Client Side Socket Event
 socket.on('refresh-messages', (messages) => {
@@ -78,13 +93,7 @@ socket.on('successful-join', (user) => {
     app.user = user;
     app.loggedIn = true;
   }
-
   app.users.push(user);
-});
-
-socket.on('failed-join', () => {
-  app.message = '';
-  app.messages.push('Username already exists.');
 });
 
 socket.on('successful-message', (content) => {
@@ -93,3 +102,6 @@ socket.on('successful-message', (content) => {
   app.messages.push(content);
 });
 
+socket.on('failed-join', () => {
+  app.duplicateUser = true;
+});
