@@ -14,18 +14,18 @@
   },
   "homepage": "https://github.com/kevintongg/CS4220#readme",
   "dependencies": {
-    "axios": "^0.18.0",
-    "babel-eslint": "^8.2.3",
+    "axios": "^0.28.0",
+    "babel-eslint": "^10.1.0",
     "cheerio": "^1.0.0-rc.2",
     "deckofcards": "1.0.0",
-    "express": "^4.16.3",
+    "express": "^4.19.2",
     "inquirer": "^5.2.0",
     "moment": "^2.22.1",
     "prettier": "^1.12.1",
-    "request": "^2.85.0",
-    "socket.io": "^2.1.0",
+    "request": "^2.88.2",
+    "socket.io": "^2.5.0",
     "superagent": "^3.8.2",
-    "yargs": "^11.0.0"
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
